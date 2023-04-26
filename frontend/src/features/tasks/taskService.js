@@ -54,11 +54,26 @@ const updateTask = async (taskId, updatedTaskData, token) => {
   return response.data
 }
 
+// Get tasks due today
+const getTasksDueToday = async (token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.get(API_URL + 'today', config);
+
+  return response.data;
+};
+
+
 const taskService = {
     createTask,
     getTasks,
     deleteTask,
     updateTask,
+    getTasksDueToday
 }
 
 export default taskService

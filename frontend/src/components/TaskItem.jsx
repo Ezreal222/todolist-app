@@ -46,9 +46,10 @@ function TaskItem({ task }) {
 
   return (
     <div className="input-group mb-3">
-      <div className="input-group-text"
-      style={{ borderColor: getBorderColor(task.priority) }}>
-        <input
+      <div className="input-group-text">
+        <input style={{ borderColor: getBorderColor(task.priority),
+                borderWidth: '2px',
+                transform: 'scale(1.5)' }}
           type="checkbox"
           onChange={handleCheckboxChange}
           className="form-check-input mt-0"

@@ -28,8 +28,8 @@ function Header() {
               <ul className="navbar-nav ms-auto">
                 {user ? (
                   <>
-                    <li className="nav-item mx-4">
-                        <span>hi {user && user.name} !</span>
+                    <li className="nav-item mx-4 d-flex align-items-center">
+                        <span className="fs-4">hi {user && user.name} !</span>
                     </li>
                     <li className="nav-item">
                       <button className="btn btn-primary" onClick={onLogout}>

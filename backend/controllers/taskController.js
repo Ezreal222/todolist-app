@@ -90,9 +90,35 @@ const deleteTask = asyncHandler(async (req, res) => {
   res.status(200).json({ id: req.params.id })
 })
 
+// @desc    Get tasks for today
+// @route   GET /api/tasks/today
+// @access  Private
+const getTasksDueToday = asyncHandler(async (req, res) => {
+  try {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    const tasks = await Task.find({
+      dueDate: {
+        $gte: today,
+        $lt: tomorrow,
+      },
+    });
+
+    res.status(200).json(tasks);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching tasks due today' });
+  }
+})
+
+
+
 module.exports = {
     getTasks,
     addTask,
     updateTask,
     deleteTask,
+    getTasksDueToday,
 }

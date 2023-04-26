@@ -85,6 +85,25 @@ export const updateTask = createAsyncThunk(
   }
 )
 
+// Get tasks due today
+export const getTasksDueToday = createAsyncThunk(
+  'tasks/getToday',
+  async (_, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await taskService.getTasksDueToday(token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 
 export const taskSlice = createSlice({
   name: 'task',
@@ -149,6 +168,19 @@ export const taskSlice = createSlice({
         state.isLoading = false
         state.isError = true
         state.message = action.payload
+      })
+      .addCase(getTasksDueToday.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getTasksDueToday.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.tasks = action.payload;
+      })
+      .addCase(getTasksDueToday.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       })
   },
 })

@@ -1,10 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import TaskForm from '../components/TaskForm'
 import TaskItem from '../components/TaskItem'
 import Spinner from '../components/Spinner'
-import { getTasks, reset } from '../features/tasks/taskSlice'
+import { getTasks, reset, getTasksDueToday } from '../features/tasks/taskSlice'
 
 function Dashboard() {
   const navigate = useNavigate()
@@ -14,25 +14,8 @@ function Dashboard() {
   const { tasks, isLoading, isError, message } = useSelector(
     (state) => state.tasks
   )
+  const [tasksDueToday, setTasksDueToday] = useState([])
 
-  /*
-  useEffect(() => {
-    if (isError) {
-      console.log(message)
-    }
-
-    if (!user) {
-      navigate('/login')
-    }
-    else {
-      dispatch(getTasks())
-    }
-    //dispatch(getTasks())
-
-    return () => {
-      dispatch(reset())
-    }
-  }, [user, navigate, isError, message, dispatch])*/
   useEffect(() => {
     if (!user) {
       navigate('/login');
@@ -45,34 +28,23 @@ function Dashboard() {
       dispatch(reset());
     };
   }, [user, navigate, dispatch]);
-  /*
-  useEffect(() => {
-  if (isError) {
-    console.log(message);
-  }
-  }, [isError, message]);
-  */
-  /*
-  if (isLoading) {
-    return <Spinner />
-  }
-  */
 
   return (
-    <section className='p-1'>
-      <TaskForm />
-
-      <section className='content'>
-        {tasks.length > 0 ? (
-          <div className='d-flex-column'>
-            {tasks.map((task) => (
-              <TaskItem key={task._id} task={task} />
-            ))}
-          </div>
-        ) : (
-          <h3>Start add some tasks!</h3>
-        )}
-      </section>
+    <section className='p-1 d-flex'>
+      <div className='row col'>
+        <TaskForm />
+        <section className='content'>
+          {tasks.length > 0 ? (
+            <div className='d-flex-column'>
+              {tasks.map((task) => (
+                <TaskItem key={task._id} task={task} />
+              ))}
+            </div>
+          ) : (
+            <h3>Start add some tasks!</h3>
+          )}
+        </section>
+      </div>
     </section>
   )
 }
