@@ -42,14 +42,14 @@ const deleteTask = async (taskId, token) => {
 }
 
 // Update user task
-const updateTask = async (taskId, token) => {
+const updateTask = async (taskId, updatedTaskData, token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   }
 
-  const response = await axios.put(API_URL + taskId, config)
+  const response = await axios.put(API_URL + taskId, updatedTaskData, config)
 
   return response.data
 }

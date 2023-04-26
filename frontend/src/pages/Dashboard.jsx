@@ -59,17 +59,12 @@ function Dashboard() {
   */
 
   return (
-    <>
-      <section className='heading'>
-        <h1>Welcome {user && user.name}</h1>
-        <p>Tasks Dashboard</p>
-      </section>
-
+    <section className='p-1'>
       <TaskForm />
 
       <section className='content'>
         {tasks.length > 0 ? (
-          <div className='tasks'>
+          <div className='d-flex-column'>
             {tasks.map((task) => (
               <TaskItem key={task._id} task={task} />
             ))}
@@ -78,7 +73,7 @@ function Dashboard() {
           <h3>Start add some tasks!</h3>
         )}
       </section>
-    </>
+    </section>
   )
 }
 

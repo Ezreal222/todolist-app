@@ -6,8 +6,6 @@ function TaskForm() {
   const [text, setText] = useState('')
   const [dueDate, setDueDate] = useState(null)
   const [priority, setPriority] = useState('')
-  const [isEditMode, setIsEditMode] = useState(false)
-
 
   const dispatch = useDispatch()
 
@@ -24,34 +22,40 @@ function TaskForm() {
     if (priority) {
       taskData.priority = priority;
     }
-  dispatch(createTask(taskData));
+    dispatch(createTask(taskData));
     //dispatch(createTask({ text, dueDate, priority }))
     setText('')
     setDueDate(null)
     setPriority('')
   }
-  const onEditButtonClick = () => {
-    setIsEditMode(!isEditMode)
-  }
 
   return (
-    <section className='form'>
-      <form onSubmit={onSubmit}>
-        <div className='form-group'>
-          <label htmlFor='text'>Task</label>
-          <input
-            type='text'
-            name='text'
-            id='text'
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-          />
-        </div>
-
-        {isEditMode && (
-          <>
-            <div className='form-group'>
-              <label htmlFor='dueDate'>Due Date</label>
+    <form className="input-group my-2" onSubmit={onSubmit}>
+      <input
+        type="text"
+        className="form-control"
+        name='text'
+        id='text'
+        placeholder='Task name'
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        aria-label="Text input with segmented dropdown button"
+      />
+      <button type="submit" className="btn btn-outline-secondary btn-lg">
+        Add Task
+      </button>
+      <button
+        type="button"
+        className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <span className="visually-hidden">Toggle Dropdown</span>
+      </button>
+      <ul className="dropdown-menu dropdown-menu-end">
+        <li>
+          <div className="dropdown-item">
+            <label htmlFor='dueDate'>Due Date</label>
               <input
                 type='date'
                 name='dueDate'
@@ -59,8 +63,10 @@ function TaskForm() {
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}
               />
-            </div>
-            <div className='form-group'>
+          </div>
+        </li>
+        <li>
+          <div className="dropdown-item">
               <label htmlFor='priority'>Priority</label>
               <select
                 name='priority'
@@ -73,20 +79,24 @@ function TaskForm() {
                 <option value='medium'>Medium</option>
                 <option value='high'>High</option>
               </select>
-            </div>
-          </>
-        )}
+          </div>
+        </li>
+        <li>
+          <a className="dropdown-item" href="#">
+            Something else here
+          </a>
+        </li>
+        <li>
+          <hr className="dropdown-divider" />
+        </li>
+        <li>
+          <a className="dropdown-item" href="#">
+            Separated link
+          </a>
+        </li>
+      </ul>
+    </form>
 
-        <div className='form-group'>
-          <button className='btn btn-block' type='submit'>
-            Add Task
-          </button>
-        </div>
-      </form>
-      <button className='btn btn-block btn-edit' onClick={onEditButtonClick}>
-        {isEditMode ? 'Hide Edit Form' : 'Edit Task'}
-      </button>
-    </section>
   )
 }
 

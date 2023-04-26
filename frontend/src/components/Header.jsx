@@ -15,32 +15,46 @@ function Header() {
   }
 
   return (
-    <header className='header'>
-      <div className='logo'>
-        <Link to='/'>TodoList</Link>
-      </div>
-      <ul>
-        {user ? (
-          <li>
-            <button className='btn' onClick={onLogout}>
-              <FaSignOutAlt /> Logout
+    <header className="bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light">
+          <div className="container-fluid">
+            <Link className="navbar-brand" to="/">
+              TodoList
+            </Link>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+              <span className="navbar-toggler-icon"></span>
             </button>
-          </li>
-        ) : (
-          <>
-            <li>
-              <Link to='/login'>
-                <FaSignInAlt /> Login
-              </Link>
-            </li>
-            <li>
-              <Link to='/register'>
-                <FaUser /> Register
-              </Link>
-            </li>
-          </>
-        )}
-      </ul>
+            <div className="collapse navbar-collapse" id="navmenu">
+              <ul className="navbar-nav ms-auto">
+                {user ? (
+                  <>
+                    <li className="nav-item mx-4">
+                        <span>hi {user && user.name} !</span>
+                    </li>
+                    <li className="nav-item">
+                      <button className="btn btn-primary" onClick={onLogout}>
+                        <FaSignOutAlt /> Logout
+                      </button>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li className="nav-item">
+                      <Link className="nav-link" to="/login">
+                        <FaSignInAlt /> Login
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link className="nav-link" to="/register">
+                        <FaUser /> Register
+                      </Link>
+                    </li>
+                  </>
+                )}
+              </ul>
+            </div>
+          </div>
+        </nav>
     </header>
   )
 }
