@@ -33,6 +33,12 @@ export const getTasks = createAsyncThunk(
   'tasks/getAll',
   async (_, thunkAPI) => {
     try {
+      
+      const { user } = thunkAPI.getState().auth;
+      if (!user) {
+        return thunkAPI.rejectWithValue('User not logged in');
+      }
+
       const token = thunkAPI.getState().auth.user.token
       return await taskService.getTasks(token)
     } catch (error) {
