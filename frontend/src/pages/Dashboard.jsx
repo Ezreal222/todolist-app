@@ -45,6 +45,11 @@ function Dashboard() {
       dispatch(reset());
     };
   }, [user, navigate, dispatch]);
+  useEffect(() => {
+  if (isError) {
+    console.log(message);
+  }
+  }, [isError, message]);
 
   
   if (isLoading) {
