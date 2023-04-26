@@ -41,10 +41,24 @@ const deleteTask = async (taskId, token) => {
   return response.data
 }
 
+// Update user task
+const updateTask = async (taskId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+
+  const response = await axios.put(API_URL + taskId, config)
+
+  return response.data
+}
+
 const taskService = {
     createTask,
     getTasks,
     deleteTask,
+    updateTask,
 }
 
 export default taskService

@@ -24,6 +24,9 @@ const addTask = asyncHandler(async (req, res) => {
   const task = await Task.create({
     text: req.body.text,
     user: req.user.id,
+    priority: req.body.priority ? req.body.priority : '',
+    dueDate: req.body.dueDate ? req.body.dueDate : null,
+    completed: false,
   })
 
   res.status(200).json(task)

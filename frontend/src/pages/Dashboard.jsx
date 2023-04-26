@@ -52,10 +52,11 @@ function Dashboard() {
   }
   }, [isError, message]);
   */
-  
+  /*
   if (isLoading) {
     return <Spinner />
   }
+  */
 
   return (
     <>

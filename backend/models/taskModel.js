@@ -11,6 +11,20 @@ const taskSchema = mongoose.Schema(
       type: String,
       required: [true, 'Please add a text value'],
     },
+    priority: {
+      type: String,
+      enum: ['low', 'medium', 'high', ''],
+      default: '',
+      require: false,
+    },
+    dueDate: {
+      type: Date,
+      require: false,
+    },
+    completed: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,
