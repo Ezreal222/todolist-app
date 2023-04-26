@@ -15,6 +15,7 @@ function Dashboard() {
     (state) => state.tasks
   )
 
+  /*
   useEffect(() => {
     if (isError) {
       console.log(message)
@@ -31,7 +32,19 @@ function Dashboard() {
     return () => {
       dispatch(reset())
     }
-  }, [user, navigate, isError, message, dispatch])
+  }, [user, navigate, isError, message, dispatch])*/
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+  
+    dispatch(getTasks());
+  
+    return () => {
+      dispatch(reset());
+    };
+  }, [user, navigate, dispatch]);
 
   
   if (isLoading) {
