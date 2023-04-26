@@ -46,7 +46,7 @@ const updateTask = asyncHandler(async (req, res) => {
     throw new Error('User not found')
   }
 
-  // check if the logged in user matches the task user
+  // Check if the logged in user matches the task user
   if (task.user.toString() !== req.user.id) {
     res.status(401)
     throw new Error('User not authorized')
