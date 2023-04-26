@@ -23,8 +23,10 @@ function Dashboard() {
     if (!user) {
       navigate('/login')
     }
-
-    dispatch(getTasks())
+    else {
+      dispatch(getTasks())
+    }
+    //dispatch(getTasks())
 
     return () => {
       dispatch(reset())
