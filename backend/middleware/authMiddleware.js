@@ -34,3 +34,5 @@ const protect = asyncHandler(async (req, res, next) => {
 })
 
 module.exports = { protect }
+
+//reference:https://github.com/bradtraversy/mern-tutorial/blob/main/backend/middleware/authMiddleware.js
