@@ -55,7 +55,7 @@ function Today() {
   return (
     <section className="p-1 d-flex">
       <Sidebar />
-      <div className="row col">
+      <div className="row col mx-2">
         <TaskForm defaultDueDate={todayDate} />
         <section className="content">
           <div className="d-flex justify-content-between align-items-center">

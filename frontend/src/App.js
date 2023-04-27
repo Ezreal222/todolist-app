@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Today from './pages/Today'
+import ListPage from "./pages/ListPage"; 
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path="/today" element={<Today />} />
+             <Route path="/:listId" element={<ListPage />} />
           </Routes>
         </div>
       </Router>

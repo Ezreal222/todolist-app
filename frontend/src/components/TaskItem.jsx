@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { deleteTask, updateTask } from '../features/tasks/taskSlice'
+import useDebounce from '../hooks/useDebounce';
 
 function TaskItem({ task }) {
 
@@ -17,9 +18,16 @@ function TaskItem({ task }) {
   };
   const handleUpdateTask = () => {
     const updatedTaskData = {
+      text,
       dueDate,
       priority,
     };
+    if (dueDate) {
+      const localDate = new Date(dueDate);
+      const timezoneOffsetInMilliseconds = localDate.getTimezoneOffset() * 60 * 1000;
+      const adjustedDate = new Date(localDate.getTime() + timezoneOffsetInMilliseconds);
+      updatedTaskData.dueDate = adjustedDate.toISOString();
+    } 
     dispatch(updateTask({ id: task._id, updatedTaskData }));
   };
   const getBorderColor = (priority) => {
@@ -34,6 +42,7 @@ function TaskItem({ task }) {
         return '';
     }
   };
+  /*
   const handleTextChange = (e) => {
     const updatedText = e.target.value;
     const updatedTaskData = {
@@ -43,6 +52,7 @@ function TaskItem({ task }) {
     };
     dispatch(updateTask({ id: task._id, updatedTaskData }));
   };
+  */
 
   return (
     <div className="input-group mb-3">
@@ -61,7 +71,7 @@ function TaskItem({ task }) {
           type="text"
           value={task.text}
           className="flex-grow-1 border-0 mx-2"
-          onChange={handleTextChange}
+          //onChange={handleTextChange}
           aria-label="Text input with checkbox"
         />
         <span
@@ -81,6 +91,20 @@ function TaskItem({ task }) {
         <span className="visually-hidden">Toggle Dropdown</span>
       </button>
       <ul className="dropdown-menu dropdown-menu-end">
+        <li>
+          <div className="dropdown-item">
+            <label htmlFor={`task-text-${task._id}`} className="me-2">
+              Task Text
+            </label>
+            <input
+              type="text"
+              name={`task-text-${task._id}`}
+              id={`task-text-${task._id}`}
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+            />
+          </div>
+        </li>
         <li>
           <div className="dropdown-item">
             <label htmlFor="dueDate" className="me-2">Due Date</label>

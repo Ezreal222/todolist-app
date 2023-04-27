@@ -5,6 +5,9 @@ const { errorHandler } = require('./middleware/errorMiddleware');
 const connectDB = require('./config/db');
 const port = process.env.PORT || 3001;
 const path = require('path');
+const listRoutes = require("./routes/listRoutes");
+
+
 
 connectDB();
 
@@ -15,6 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/tasks', require('./routes/taskRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
+app.use("/api/lists", require("./routes/listRoutes"));
 
 // Serve frontend
 if (process.env.NODE_ENV === 'production') {

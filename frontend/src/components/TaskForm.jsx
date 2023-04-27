@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { createTask } from '../features/tasks/taskSlice'
 
-function TaskForm({defaultDueDate}) {
+function TaskForm({defaultDueDate, listId}) {
   const [text, setText] = useState('');
   const [dueDate, setDueDate] = useState(defaultDueDate || null);
   const [priority, setPriority] = useState('');
@@ -20,8 +20,10 @@ function TaskForm({defaultDueDate}) {
     const timezoneOffsetInMilliseconds = localDate.getTimezoneOffset() * 60 * 1000;
     const adjustedDate = new Date(localDate.getTime() + timezoneOffsetInMilliseconds);
     taskData.dueDate = adjustedDate.toISOString();
-  }
-
+    } 
+    if (listId) {
+      taskData.list = listId;
+    }
     if (priority) {
       taskData.priority = priority;
     }

@@ -1,20 +1,25 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const taskSchema = mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: 'User',
+      ref: "User",
+    },
+    list: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "List",
+      required: false,
     },
     text: {
       type: String,
-      required: [true, 'Please add a text value'],
+      required: [true, "Please add a text value"],
     },
     priority: {
       type: String,
-      enum: ['low', 'medium', 'high', ''],
-      default: '',
+      enum: ["low", "medium", "high", ""],
+      default: "",
       require: false,
     },
     dueDate: {
@@ -29,6 +34,6 @@ const taskSchema = mongoose.Schema(
   {
     timestamps: true,
   }
-)
+);
 
-module.exports = mongoose.model('Task', taskSchema)
+module.exports = mongoose.model("Task", taskSchema);
