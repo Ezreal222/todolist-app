@@ -36,3 +36,4 @@ const authService = {
 }
 
 export default authService
+//reference:https://github.com/bradtraversy/mern-tutorial/blob/main/frontend/src/features/auth/authService.js
