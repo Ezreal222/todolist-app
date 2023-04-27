@@ -106,6 +106,7 @@ const getTasksDueToday = asyncHandler(async (req, res) => {
         $gte: today,
         $lt: tomorrow,
       },
+      user: req.user.id,
     });
 
     res.status(200).json(tasks);
