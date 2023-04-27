@@ -5,6 +5,7 @@ import TaskForm from "../components/TaskForm";
 import TaskItem from "../components/TaskItem";
 import { reset, getTasksDueToday } from "../features/tasks/taskSlice";
 import Sidebar from "../components/Sidebar";
+import Spinner from "../components/Spinner";
 
 function Today() {
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ function Today() {
   };
 
   const sortedTasks = sortTasks(tasks, sortType);
-
+  if (isLoading) return <Spinner />;
   return (
     <section className="p-1 d-flex">
       <Sidebar />

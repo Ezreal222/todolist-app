@@ -5,6 +5,7 @@ import TaskForm from "../components/TaskForm";
 import TaskItem from "../components/TaskItem";
 import { getTasks, reset } from "../features/tasks/taskSlice";
 import Sidebar from "../components/Sidebar";
+import Spinner from "../components/Spinner";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -46,13 +47,13 @@ function Dashboard() {
       }
     });
   };
-
+  if (isLoading) return <Spinner />;
   const sortedTasks = sortTasks(tasks, sortType);
 
   return (
     <section className="p-1 d-flex">
       <Sidebar />
-      <div className="row col">
+      <div className="row col mx-2">
         <TaskForm />
         <section className="content">
           <div className="d-flex justify-content-between align-items-center">
@@ -101,7 +102,7 @@ function Dashboard() {
               ))}
             </div>
           ) : (
-            <h3>Start adding some tasks!</h3>
+            <h3 className="mx-2">Start adding some tasks!</h3>
           )}
         </section>
       </div>
