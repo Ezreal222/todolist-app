@@ -2,32 +2,35 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { createTask } from '../features/tasks/taskSlice'
 
-function TaskForm() {
-  const [text, setText] = useState('')
-  const [dueDate, setDueDate] = useState(null)
-  const [priority, setPriority] = useState('')
+function TaskForm({defaultDueDate}) {
+  const [text, setText] = useState('');
+  const [dueDate, setDueDate] = useState(defaultDueDate || null);
+  const [priority, setPriority] = useState('');
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const onSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const taskData = {
       text,
     };
 
     if (dueDate) {
-      taskData.dueDate = dueDate;
-    }
+    const localDate = new Date(dueDate);
+    const timezoneOffsetInMilliseconds = localDate.getTimezoneOffset() * 60 * 1000;
+    const adjustedDate = new Date(localDate.getTime() + timezoneOffsetInMilliseconds);
+    taskData.dueDate = adjustedDate.toISOString();
+  }
 
     if (priority) {
       taskData.priority = priority;
     }
     dispatch(createTask(taskData));
-    //dispatch(createTask({ text, dueDate, priority }))
-    setText('')
-    setDueDate(null)
-    setPriority('')
-  }
+    setText('');
+    setDueDate(defaultDueDate || null);
+    setPriority('');
+  };
+
 
   return (
     <form className="input-group my-2" onSubmit={onSubmit}>
@@ -80,19 +83,6 @@ function TaskForm() {
                 <option value='high'>High</option>
               </select>
           </div>
-        </li>
-        <li>
-          <a className="dropdown-item" href="#">
-            Something else here
-          </a>
-        </li>
-        <li>
-          <hr className="dropdown-divider" />
-        </li>
-        <li>
-          <a className="dropdown-item" href="#">
-            Separated link
-          </a>
         </li>
       </ul>
     </form>

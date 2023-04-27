@@ -5,6 +5,7 @@ import TaskForm from '../components/TaskForm'
 import TaskItem from '../components/TaskItem'
 import Spinner from '../components/Spinner'
 import { getTasks, reset, getTasksDueToday } from '../features/tasks/taskSlice'
+import Sidebar from '../components/Sidebar'
 
 function Dashboard() {
   const navigate = useNavigate()
@@ -14,8 +15,6 @@ function Dashboard() {
   const { tasks, isLoading, isError, message } = useSelector(
     (state) => state.tasks
   )
-  const [tasksDueToday, setTasksDueToday] = useState([])
-
   useEffect(() => {
     if (!user) {
       navigate('/login');
@@ -31,9 +30,11 @@ function Dashboard() {
 
   return (
     <section className='p-1 d-flex'>
+      <Sidebar />
       <div className='row col'>
         <TaskForm />
         <section className='content'>
+          <h2>All Tasks</h2>
           {tasks.length > 0 ? (
             <div className='d-flex-column'>
               {tasks.map((task) => (
