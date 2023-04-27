@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Sidebar from "../components/Sidebar";
+import { reset, getTasks } from "../features/tasks/taskSlice";
 
 
 
@@ -16,6 +17,18 @@ function CalendarPage() {
   const { tasks, isLoading, isError, message } = useSelector(
       (state) => state.tasks
   );
+    useEffect(() => {
+    if (!user) {
+      navigate("/login");
+      return;
+    }
+
+    dispatch(getTasks());
+
+    return () => {
+      dispatch(reset());
+    };
+  }, [user, navigate, dispatch]);
 
   return (
     <section className="p-1 d-flex">
