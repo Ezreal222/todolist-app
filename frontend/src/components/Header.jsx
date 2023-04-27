@@ -19,7 +19,7 @@ function Header() {
         <nav className="navbar navbar-expand-lg navbar-light">
           <div className="container-fluid">
             <Link className="navbar-brand" to="/">
-              TodoList
+              <i class="fa-solid fa-check mx-2"></i>TodoList
             </Link>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
               <span className="navbar-toggler-icon"></span>

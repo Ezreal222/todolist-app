@@ -5,10 +5,10 @@ function Sidebar() {
     <div className="sidebar-container d-flex flex-column col-3">
       <ul className="list-group">
         <li className="list-group-item list-group-item-action">
-          <Link to="/">All Tasks</Link>
+          <Link to="/"><i class="fa-solid fa-inbox mx-2"></i>All Tasks</Link>
         </li>
         <li className="list-group-item list-group-item-action">
-          <Link to="/today">Today</Link>
+          <Link to="/today"><i class="fa-solid fa-calendar-week mx-2"></i>Today</Link>
         </li>
       </ul>
     </div>

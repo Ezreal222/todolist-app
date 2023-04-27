@@ -45,7 +45,7 @@ function TaskForm({defaultDueDate}) {
         aria-label="Text input with segmented dropdown button"
       />
       <button type="submit" className="btn btn-outline-secondary btn-lg">
-        Add Task
+        <i class="fa-solid fa-plus mr-2"></i>Add Task
       </button>
       <button
         type="button"

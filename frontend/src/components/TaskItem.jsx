@@ -60,7 +60,7 @@ function TaskItem({ task }) {
         <input
           type="text"
           value={task.text}
-          className="flex-grow-1 border-0"
+          className="flex-grow-1 border-0 mx-2"
           onChange={handleTextChange}
           aria-label="Text input with checkbox"
         />
@@ -125,7 +125,7 @@ function TaskItem({ task }) {
         onClick={() => dispatch(deleteTask(task._id))}
         className="btn btn-outline-secondary"
       >
-        X
+        <i class="fa-solid fa-trash"></i>
       </button>
 
     </div>
