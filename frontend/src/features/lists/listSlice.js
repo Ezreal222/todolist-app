@@ -51,20 +51,6 @@ export const removeList = createAsyncThunk('lists/removeList', async (id, thunkA
   }
 });
 
-// Fetch tasks for a specific list
-export const fetchListTasks = createAsyncThunk('lists/fetchListTasks', async (listId, thunkAPI) => {
-  try {
-    const token = thunkAPI.getState().auth.user.token;
-    return await listService.getListTasks(listId, token);
-  } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.message) ||
-      error.message ||
-      error.toString();
-    return thunkAPI.rejectWithValue(message);
-  }
-});
-
 const listSlice = createSlice({
   name: 'lists',
   initialState,
@@ -112,22 +98,6 @@ const listSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
-    .addCase(fetchListTasks.pending, (state) => {
-      state.isLoading = true;
-    })
-    .addCase(fetchListTasks.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.isSuccess = true;
-      const list = state.lists.find((list) => list._id === action.meta.arg);
-      if (list) {
-        list.tasks = action.payload;
-      }
-    })
-    .addCase(fetchListTasks.rejected, (state, action) => {
-      state.isLoading = false;
-      state.isError = true;
-      state.message = action.payload;
-    });
   },
 });
 

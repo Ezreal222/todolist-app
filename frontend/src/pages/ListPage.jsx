@@ -29,7 +29,7 @@ function ListPage() {
         if (!b.dueDate) return -1;
         return new Date(a.dueDate) - new Date(b.dueDate);
       } else if (type === "priority") {
-        const priorityOrder = { low: 3, medium: 2, high: 1, undefined: 4 };
+        const priorityOrder = { low: 3, medium: 2, high: 1, '': 4 };
         return priorityOrder[a.priority] - priorityOrder[b.priority];
       }
     });

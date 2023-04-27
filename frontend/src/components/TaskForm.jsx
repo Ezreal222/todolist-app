@@ -38,7 +38,7 @@ function TaskForm({defaultDueDate, listId}) {
     <form className="input-group my-2" onSubmit={onSubmit}>
       <input
         type="text"
-        className="form-control"
+        className="form-control "
         name='text'
         id='text'
         placeholder='Task name'

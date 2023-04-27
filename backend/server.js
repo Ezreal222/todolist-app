@@ -7,8 +7,6 @@ const port = process.env.PORT || 3001;
 const path = require('path');
 const listRoutes = require("./routes/listRoutes");
 
-
-
 connectDB();
 
 const app = express();
@@ -20,7 +18,6 @@ app.use('/api/tasks', require('./routes/taskRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
 app.use("/api/lists", require("./routes/listRoutes"));
 
-// Serve frontend
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../frontend/build')));
 

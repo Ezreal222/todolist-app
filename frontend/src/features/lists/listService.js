@@ -35,16 +35,6 @@ const deleteList = async (id, token) => {
   return response.data;
 };
 
-const getListTasks = async (listId, token) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
 
-  const response = await axios.get(`${API_URL}/${listId}/tasks`, config);
-  return response.data;
-};
-
-const listService = { getLists, addList, deleteList, getListTasks };
+const listService = { getLists, addList, deleteList };
 export default listService;

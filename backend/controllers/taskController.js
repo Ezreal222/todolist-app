@@ -114,21 +114,10 @@ const getTasksDueToday = asyncHandler(async (req, res) => {
   }
 })
 
-/*
-// @desc    Get tasks by list
-// @route   GET /api/tasks/list/:listId
-// @access  Private
-const getTasksByList = asyncHandler(async (req, res) => {
-  const tasks = await Task.find({ user: req.user.id, list: req.params.listId });
-
-  res.status(200).json(tasks);
-});*/
-
 module.exports = {
   getTasks,
   addTask,
   updateTask,
   deleteTask,
   getTasksDueToday,
-  //getTasksByList,
 };

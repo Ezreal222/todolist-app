@@ -42,7 +42,7 @@ function Dashboard() {
         if (!b.dueDate) return -1;
         return new Date(a.dueDate) - new Date(b.dueDate);
       } else if (type === "priority") {
-        const priorityOrder = { low: 3, medium: 2, high: 1, undefined: 4 };
+        const priorityOrder = { low: 3, medium: 2, high: 1, '': 4 };
         return priorityOrder[a.priority] - priorityOrder[b.priority];
       }
     });
@@ -102,7 +102,7 @@ function Dashboard() {
               ))}
             </div>
           ) : (
-            <h3 className="mx-2">Start adding some tasks!</h3>
+            <h3 className="">Start adding some tasks!</h3>
           )}
         </section>
       </div>

@@ -54,19 +54,8 @@ const deleteList = asyncHandler(async (req, res) => {
   res.status(200).json({ id: req.params.id });
 });
 
-// @desc    Get tasks for a specific list
-// @route   GET /api/lists/:listId/tasks
-// @access  Private
-const getListTasks = asyncHandler(async (req, res) => {
-  const listId = req.params.listId;
-  const tasks = await Task.find({ list: listId, user: req.user.id });
-
-  res.status(200).json(tasks);
-});
-
 module.exports = {
   getLists,
   addList,
   deleteList,
-  getListTasks,
 };

@@ -16,7 +16,7 @@ function Header() {
 
   return (
     <header className="bg-light">
-        <nav className="navbar navbar-expand-lg navbar-light">
+        <nav className="navbar navbar-expand-sm navbar-light">
           <div className="container-fluid">
             <Link className="navbar-brand" to="/">
               <i class="fa-solid fa-check mx-2"></i>TodoList
@@ -40,12 +40,12 @@ function Header() {
                 ) : (
                   <>
                     <li className="nav-item">
-                      <Link className="nav-link" to="/login">
+                      <Link className="nav-link link-primary" to="/login">
                         <FaSignInAlt /> Login
                       </Link>
                     </li>
                     <li className="nav-item">
-                      <Link className="nav-link" to="/register">
+                      <Link className="nav-link link-primary" to="/register">
                         <FaUser /> Register
                       </Link>
                     </li>

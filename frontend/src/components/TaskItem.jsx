@@ -41,17 +41,6 @@ function TaskItem({ task }) {
         return '';
     }
   };
-  /*
-  const handleTextChange = (e) => {
-    const updatedText = e.target.value;
-    const updatedTaskData = {
-      text: updatedText,
-      dueDate,
-      priority,
-    };
-    dispatch(updateTask({ id: task._id, updatedTaskData }));
-  };
-  */
 
   return (
     <div className="input-group mb-3">
@@ -70,7 +59,6 @@ function TaskItem({ task }) {
           type="text"
           value={task.text}
           className="flex-grow-1 border-0 mx-2"
-          //onChange={handleTextChange}
           aria-label="Text input with checkbox"
         />
         <span
